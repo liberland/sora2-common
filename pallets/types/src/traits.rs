@@ -36,8 +36,8 @@ use crate::types::AuxiliaryDigestItem;
 use crate::H256;
 use crate::U256;
 use crate::{
-    types::{BridgeAppInfo, BridgeAssetInfo, MessageStatus},
-    GenericAccount, GenericNetworkId,
+    types::{BridgeAppInfo, BridgeAssetInfo},
+    GenericNetworkId,
 };
 use ethereum_types::Address;
 use frame_support::{
@@ -118,64 +118,6 @@ pub trait BridgeApp<NetworkId, AccountId, Recipient, AssetId, Balance> {
     fn list_apps(network_id: NetworkId) -> Vec<BridgeAppInfo>;
 }
 
-pub trait MessageStatusNotifier<AssetId, AccountId, Balance> {
-    fn update_status(
-        network_id: GenericNetworkId,
-        message_id: H256,
-        status: MessageStatus,
-        end_timestamp: Option<u64>,
-    );
-
-    fn inbound_request(
-        network_id: GenericNetworkId,
-        message_id: H256,
-        source: GenericAccount<AccountId>,
-        dest: AccountId,
-        asset_id: AssetId,
-        amount: Balance,
-        start_timestamp: u64,
-    );
-
-    fn outbound_request(
-        network_id: GenericNetworkId,
-        message_id: H256,
-        source: AccountId,
-        dest: GenericAccount<AccountId>,
-        asset_id: AssetId,
-        amount: Balance,
-    );
-}
-
-impl<AssetId, AccountId, Balance> MessageStatusNotifier<AssetId, AccountId, Balance> for () {
-    fn update_status(
-        _network_id: GenericNetworkId,
-        _message_id: H256,
-        _status: MessageStatus,
-        _end_timestamp: Option<u64>,
-    ) {
-    }
-
-    fn inbound_request(
-        _network_id: GenericNetworkId,
-        _message_id: H256,
-        _source: GenericAccount<AccountId>,
-        _dest: AccountId,
-        _asset_id: AssetId,
-        _amount: Balance,
-        _start_timestamp: u64,
-    ) {
-    }
-
-    fn outbound_request(
-        _network_id: GenericNetworkId,
-        _message_id: H256,
-        _source: AccountId,
-        _dest: GenericAccount<AccountId>,
-        _asset_id: AssetId,
-        _amount: Balance,
-    ) {
-    }
-}
 
 /// Trait for tracking Ethereum-based network transaction fee paid by relayer for messages relayed
 /// from Sora2 network to Ethereum-based network.

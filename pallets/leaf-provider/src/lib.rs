@@ -43,7 +43,7 @@ pub const RANDOMNESS_SUBJECT: &[u8] = b"beefy-leaf-extra";
 pub mod pallet {
     #![allow(missing_docs)]
 
-    use beefy_primitives::mmr::BeefyDataProvider;
+    use sp_beefy::mmr::BeefyDataProvider;
     use bridge_types::traits::AuxiliaryDigestHandler;
     use bridge_types::types::{AuxiliaryDigest, AuxiliaryDigestItem, LeafExtraData};
     use frame_support::pallet_prelude::*;

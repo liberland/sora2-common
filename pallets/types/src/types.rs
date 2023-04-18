@@ -32,7 +32,7 @@
 
 use crate::H256;
 use crate::{H160, U256};
-use beefy_primitives::mmr::{BeefyNextAuthoritySet, MmrLeafVersion};
+use sp_beefy::mmr::{BeefyNextAuthoritySet, MmrLeafVersion};
 use codec::{Decode, Encode};
 use frame_support::RuntimeDebug;
 #[cfg(feature = "std")]
